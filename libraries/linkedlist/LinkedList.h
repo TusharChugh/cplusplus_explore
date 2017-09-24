@@ -9,6 +9,10 @@
 
 namespace tlib {
     template <typename T>
+    /***
+     *
+     * @tparam T
+     */
     class LinkedList {
         int size_;
         std::unique_ptr <LinkedListNode<T>> head_;
@@ -16,8 +20,18 @@ namespace tlib {
     public:
         LinkedList(): size_{0}, head_{nullptr} {};
         ~LinkedList() = default;
-
+        
+        /**
+         *
+         * @param value
+         */
         void insert_start(T value);
+
+        /**
+         *
+         * @param os
+         * @return
+         */
         std::ostream & print(std::ostream &os);
         int size() const;
     };
