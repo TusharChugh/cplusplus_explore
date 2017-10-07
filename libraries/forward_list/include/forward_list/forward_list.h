@@ -1,11 +1,8 @@
-//
-// Created by fzff9p on 9/21/17.
-//
+#ifndef FORWARD_LIST_FORWARD_LIST_H
+#define FORWARD_LIST_FORWARD_LIST_H
 
-#ifndef LINKEDLIST_LINKEDLIST_H
-#define LINKEDLIST_LINKEDLIST_H
-
-#include "LinkedListNode.h"
+#include <iostream>
+#include <forward_list/forward_list_node.h>
 
 namespace tlib {
     template <typename T>
@@ -15,12 +12,12 @@ namespace tlib {
      */
     class LinkedList {
         int size_;
-        std::unique_ptr <LinkedListNode<T>> head_;
+        std::unique_ptr <forward_list_node<T>> head_;
 
     public:
         LinkedList(): size_{0}, head_{nullptr} {};
         ~LinkedList() = default;
-        
+
         /**
          *
          * @param value
@@ -38,8 +35,9 @@ namespace tlib {
 
     template <typename T>
     void LinkedList<T>::insert_start(T value)  {
-       // std::unique_ptr<LinkedListNode<T>> test_node = std::make_unique<LinkedListNode(value));
-        std::unique_ptr<LinkedListNode<T>> new_node(new LinkedListNode<T>(value));
+        // std::unique_ptr<LinkedListNode<T>> test_node = std::make_unique<LinkedListNode(value));
+        std::unique_ptr<forward_list_node<T>> new_node(new forward_list_node<T>(value));
+        //auto new_node = std::make_unique<forward_list_node<T>>(value);
         new_node->next = std::move(head_);
         head_ = std::move(new_node);
         size_ ++;
@@ -61,4 +59,5 @@ namespace tlib {
     }
 
 }
-#endif //LINKEDLIST_LINKEDLIST_H
+
+#endif //FORWARD_LIST_FORWARD_LIST_H

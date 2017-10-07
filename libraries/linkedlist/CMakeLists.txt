@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.8)
-project(linkedlist)
-
-set(CMAKE_CXX_STANDARD 14)
-
-set(SOURCE_FILES main.cpp LinkedList.h LinkedListNode.h)
-add_executable(linkedlist ${SOURCE_FILES})
