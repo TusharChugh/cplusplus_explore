@@ -7,9 +7,11 @@ namespace poker_game {
     class pips {
     public:
         pips(int value);
-        friend std::ostream& operator<<(std::ostream& out, const pips& p);
         int get_pips() const;
 
+        friend inline std::ostream& operator<<(std::ostream& out, const pips& p) {
+            return out<<p.get_pips();
+        }
     private:
         int value_;
     };

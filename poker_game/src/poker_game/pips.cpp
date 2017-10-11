@@ -1,7 +1,3 @@
-//
-// Created by fzff9p on 10/9/17.
-//
-
 #include "poker_game/pips.h"
 #include <assert.h>
 
@@ -12,5 +8,4 @@ poker_game::pips::pips(int value): value_(value) {
 int poker_game::pips::get_pips() const{
     return value_;
 }
-
 
