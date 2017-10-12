@@ -15,9 +15,10 @@ namespace poker_game {
 
     class card {
     public:
+        card();
         card(suite_type suite, poker_game::pips value);
-        friend std::ostream& operator<<(std::ostream& out, const poker_game::card& c) {
-            out<<c.value_<< static_cast<short>(c.suit_);
+        friend inline std::ostream& operator<<(std::ostream& out, const poker_game::card& c) {
+            out<<c.value_<<"  "<<static_cast<short>(c.suit_);
             return out;
         }
         suite_type suit() const;
