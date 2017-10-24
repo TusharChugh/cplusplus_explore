@@ -1,1 +1,2 @@
-[![Build Status](https://travis-ci.org/tusharchugh/cplusplus_explore.svg?branch=master)](http://travis-ci.org/tusharchugh/cplusplus_explore)
+[![Build Status](https://travis-ci.org/TusharChugh/cplusplus_explore
+.svg?branch=master)](http://travis-ci.org/TusharChugh/cplusplus_explore)
