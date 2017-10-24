@@ -1,12 +1,92 @@
-language: cpp
-compiler: g++
+anguage: cpp
+sudo: required
 
-before_install:
-- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-- sudo apt-get update -qq
+env:
+  global:
 
-install:
-- sudo apt-get install -qq g++-4.8
-- export CXX="g++-4.8"
+  # Workaround for https://github.com/travis-ci/travis-ci/issues/4681
+  matrix:
+    - TRAVIS_EMPTY_JOB_WORKAROUND=true
+
+addons:
+  apt:
+    packages:
+      - g++-4.9 
+                # clang will fail to build without it
+    sources:
+      - ubuntu-toolchain-r-test
+
+cache:
+  directories:
+    - ${TRAVIS_BUILD_DIR}/deps
+
+matrix:
+  exclude:
+    - env: TRAVIS_EMPTY_JOB_WORKAROUND=true
+
+  include:
+
+    ###
+    # All compilers, default boost
+    ###
+
+    - os: linux
+      env: LLVM_VERSION=3.5 BOOST_VERSION=default
+      compiler: clang
+
+    - os: linux
+      env: LLVM_VERSION=3.6 BOOST_VERSION=default
+      compiler: clang
+
+    - os: linux
+      env: LLVM_VERSION=3.7 BOOST_VERSION=default
+      compiler: clang
+
+    - os: linux
+      env: LLVM_VERSION=3.8 BOOST_VERSION=default
+      compiler: clang
+
+    - os: linux
+      env: GCC_VERSION=4.9 BOOST_VERSION=default
+      compiler: gcc
+
+    - os: linux
+      env: GCC_VERSION=5.1 BOOST_VERSION=default
+      compiler: gcc
+
+    - os: linux
+      env: GCC_VERSION=5.2 BOOST_VERSION=default
+      compiler: gcc
+
+    - os: linux
+      env: GCC_VERSION=5.3 BOOST_VERSION=default
+      compiler: gcc
+
+    ##
+    # With varying boost versions
+    ##
+
+    - os: linux
+      env: LLVM_VERSION=3.6 BOOST_VERSION=1.55
+      compiler: clang
+
+    - os: linux
+      env: LLVM_VERSION=3.7 BOOST_VERSION=1.57
+      compiler: clang
+
+    - os: linux
+      env: LLVM_VERSION=3.8 BOOST_VERSION=1.59
+      compiler: clang
+
+script:
+  - if [[ -z ${COMPILATION_NOT_FINISHED} ]]; then
+      echo "CXX = " ${CXX};
+      echo "CXXFLAGS = " ${CXXFLAGS};
+      echo "LDFLAGS = " ${LDFLAGS};
+      echo "BOOST_ROOT = " ${BOOST_ROOT};
+      ./build.sh;
+    else
+      echo "Compiler didn't finish compiling, skipping script in order to cache the partial progress";
+    fi
 
 script: "bash -c ./build.sh"
