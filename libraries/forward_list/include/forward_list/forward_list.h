@@ -35,23 +35,23 @@ namespace tlib {
 
     template <typename T>
     void LinkedList<T>::insert_start(T value)  {
-        // std::unique_ptr<LinkedListNode<T>> test_node = std::make_unique<LinkedListNode(value));
-        std::unique_ptr<forward_list_node<T>> new_node(new forward_list_node<T>(value));
-        //auto new_node = std::make_unique<forward_list_node<T>>(value);
+        //std::unique_ptr<LinkedListNode<T>> test_node = std::make_unique<LinkedListNode(value));
+        //std::unique_ptr<forward_list_node<T>> new_node(new forward_list_node<T>(value));
+        auto new_node = std::make_unique<forward_list_node<T>>(value);
         new_node->next = std::move(head_);
         head_ = std::move(new_node);
         size_ ++;
     }
 
-    template <typename T>
-    std::ostream & LinkedList<T>::print(std::ostream &os = std::cout) {
-        auto current_node = head_.get();
-        while(current_node){
-            os << current_node->value_ << " ";
-            current_node = current_node->next.get();
-        }
-        return os;
-    }
+//    template <typename T>
+//    std::ostream& LinkedList<T>::print(std::ostream &os = std::cout) {
+//        auto current_node = head_.get();
+//        while(current_node){
+//            os << current_node->value_ << " ";
+//            current_node = current_node->next.get();
+//        }
+//        return os;
+//    }
 
     template <typename T>
     int LinkedList<T>::size() const {
