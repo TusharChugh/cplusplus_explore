@@ -17,10 +17,6 @@ before_install:
     - chmod +x build.sh
 
 script:
-#  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6
-#  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6
-#  - sudo update-alternatives --config gcc 
-#  - sudo update-alternatives --config g++
   # Link gcc-6 and g++-6 to their standard commands
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
@@ -30,7 +26,4 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
-
-
-
-#"bash -c ./build.sh"
+  - "bash -c ./build.sh"
