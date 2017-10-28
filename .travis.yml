@@ -18,11 +18,10 @@ before_install:
     - chmod +x build.sh
     - cd /usr/src/gtest
     - sudo cmake CMakeLists.txt
-    - sudo make
-    - cd -
- 
+    - sudo make 
 # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
     - sudo cp *.a /usr/lib
+    - cd -
 
 script:
   # Link gcc-6 and g++-6 to their standard commands
