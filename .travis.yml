@@ -19,6 +19,7 @@ before_install:
     - cd /usr/src/gtest
     - sudo cmake CMakeLists.txt
     - sudo make
+    - cd -
  
 # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
     - sudo cp *.a /usr/lib
@@ -33,4 +34,5 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
+  - pwd
   - "bash -c ./build.sh"
