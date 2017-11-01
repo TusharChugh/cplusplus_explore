@@ -3,23 +3,27 @@
 tlib::tstring::tstring() {
     reset();
 }
-tlib::tstring::tstring(int a) {
-    a = 10;
+
+tlib::tstring::tstring(const char *str) {
+    copy_str(str);
 }
 
-tlib::tstring::tstring(const char *input) {
-    copy_str(input);
+tlib::tstring::tstring(tstring && str) noexcept {
+    reset();
+    _str = str._str;
+    _str_len = str._str_len;
+    str.reset();
 }
 
 tlib::tstring::~tstring() {
     reset();
 }
 
-const char* tlib::tstring::copy_str(const char * input) {
-    if(input) {
-        size_t length = strnlen(input, tlib::tstring::MAX_LENGTH);
+const char* tlib::tstring::copy_str(const char * str) {
+    if(str) {
+        size_t length = strnlen(str, tlib::tstring::MAX_LENGTH);
         alloc_str(length);
-        strncpy((char *)_str, input, length);
+        strncpy((char *)_str, str, length);
         _str_len = length;
     }
     return _str;

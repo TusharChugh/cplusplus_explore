@@ -5,32 +5,75 @@
 #include <cstddef>
 
 
-#define __TLIB_STRING_VERSION "0.0.1"
+const static char * __TLIB_STRING_VERSION = "0.0.1";
 
 namespace tlib {
     class tstring {
     public:
-        //constructors
-        tstring();
-        tstring(const char* input);
-        tstring(const tstring &);
-        tstring(int a);
+        /*******************constructors*******************/
 
+        /**
+         * Default constructor
+         * Constructs an empty string with a length of zero characters
+         */
+        tstring();
+
+        /**
+         * Constructor to take input as c-string
+         * @param str copies the null-terminated character sequence (c-string) pointer by str
+         */
+        tstring(const char * str);
+
+        /**
+         * Copy constructor
+         * @param str constructs a copy of str
+         */
+        tstring(const tstring & str);
+
+        /**
+         * Move constructors
+         * @param str constructs a new string and moves the contents of str to it
+         */
+        tstring(tstring && str) noexcept;
+
+        /**
+         * Destructor
+         */
         ~tstring();
 
-        //data management
+        /*******************data management*******************/
+        /**
+         * Allocate the memory for a string given the input size
+         * @param size size of the memory to be allocated
+         * @return character pointer to the allocated memory
+         */
         const char* alloc_str(size_t size);
+
+        /**
+         * reset the string to an empty string with a length of zero characters
+         */
         void reset();
+
+        /**
+         * Copies the null-terminated character sequence pointed by str
+         * @param input null terminated str
+         * @return string with copied data
+         */
         const char * copy_str(const char * input);
+
+        /**
+         * returns a null-terminated character sequence (c-string) type
+         * @return c-string
+         */
         const char * c_str() const;
 
-        //opertors
+        /******************operators******************/
 
         //comparison operators
 
-        //find and replace
+        /******************find and replace******************/
 
-        //split
+        /******************split******************/
 
 
     private:
