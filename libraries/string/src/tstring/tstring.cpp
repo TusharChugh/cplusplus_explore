@@ -15,6 +15,10 @@ tlib::tstring::tstring(tstring && str) noexcept {
     str.reset();
 }
 
+tlib::tstring::tstring(const tstring & str) {
+    copy_str(str._str);
+}
+
 tlib::tstring::~tstring() {
     reset();
 }
