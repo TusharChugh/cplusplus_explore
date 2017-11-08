@@ -1,5 +1,7 @@
 #include <tstring/tstring.h>
+#include <utility>
 
+//Constructors
 tlib::tstring::tstring() {
     reset();
 }
@@ -23,11 +25,12 @@ tlib::tstring::~tstring() {
     reset();
 }
 
+//Data management
 const char* tlib::tstring::copy_str(const char * str) {
     if(str) {
         size_t length = strnlen(str, tlib::tstring::MAX_LENGTH);
         alloc_str(length);
-        strncpy((char *)_str, str, length);
+        strncpy(_str, str, length);
         _str_len = length;
     }
     return _str;
@@ -48,4 +51,22 @@ void tlib::tstring::reset() {
 
 const char * tlib::tstring::c_str() const {
     return _str;
+}
+
+void tlib::swap(tstring & str1, tstring & str2){
+    //enabling ADL with swap is not useful for our case as cstring and int don't have their own swap methods)
+    std::swap(str1._str, str2._str);
+    std::swap(str1._str_len, str2._str_len);
+}
+
+//Operators
+//Copy and swap idiom (https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom)
+//The rule of big three (copy constructor, copy assignment and destructor:
+// https://stackoverflow.com/questions/4172722/what-is-the-rule-of-three)
+//Can't use code below because the self assignment would delete the reference of the object (str = str)
+//copy_str(str._str);
+//return *this;
+tlib::tstring & tlib::tstring::operator=(tstring & str) {
+    swap(*this, str);
+    return *this;
 }

@@ -59,7 +59,7 @@ namespace tlib {
          * @param input null terminated str
          * @return string with copied data
          */
-        const char * copy_str(const char * input);
+        const char * copy_str(const char * str);
 
         /**
          * returns a null-terminated character sequence (c-string) type
@@ -67,7 +67,16 @@ namespace tlib {
          */
         const char * c_str() const;
 
+        friend void swap(tstring & str1, tstring & str2);
+
         /******************operators******************/
+
+        /**
+         *
+         * @param str
+         * @return
+         */
+        tstring & operator = (tstring & str);
 
         //comparison operators
 
