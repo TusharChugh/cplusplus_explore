@@ -26,7 +26,7 @@ TEST(STRING_SWAP, STRING_SWAP_NON_EMPTY_ASSIGNMENT_Test) {
     ASSERT_STREQ(input2.c_str(), "Hello");
 }
 
-TEST(STRING_SWAP, STRING_CONCAT_OPERATOR_TEST) {
+TEST(STRING_SWAP, STRING_CONCAT_OPERATOR_TEST1) {
     tlib::tstring input1("Hello");
     tlib::tstring input2("World");
     input2 += input1;
@@ -34,6 +34,15 @@ TEST(STRING_SWAP, STRING_CONCAT_OPERATOR_TEST) {
     ASSERT_STREQ(string_.c_str(), input1.c_str());
     ASSERT_STREQ(input2.c_str(), "WorldHello");
 }
+
+//TEST(STRING_SWAP, STRING_CONCAT_OPERATOR_TEST3) {
+//    tlib::tstring input1("Hello");
+//    tlib::tstring input2("World");
+//    input2 = input1 + input2;
+//    //Check if the input1 has not been modified
+//    ASSERT_STREQ(string_.c_str(), input1.c_str());
+//    ASSERT_STREQ(input2.c_str(), "WorldHello");
+//}
 
 TEST(STRING_SWAP, STRING_CONCAT_OPERATOR_TEST2) {
     tlib::tstring input1;

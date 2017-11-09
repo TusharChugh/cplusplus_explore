@@ -1,6 +1,6 @@
 # String class similar to std::string
 
-## Key points
+## Key points | Thoughts for the design of tlib::tstring
 ### 1. Rule of big three (and a half)
 If we have to manage resources like char pointer in this lib - we need to create our own copy constructor, destructor and an assignment operator. For assignment operator we need a swap function (that's why three and a half).
 Details:   
@@ -27,8 +27,13 @@ But implicit typecasting is evil. Consider:
 tlib::tstring str = "Hello";
 str + "World"
 Now we are not sure that str would be type casted to const char * and or will stay as tstring and concatenated using the + operator of the tstring class. 
+Instead of this typecast, we can overload with << operator.  
+Note: Explicit keyword from c++ 11 onwards can be used to get away with implicit typecast evil  
+Details: https://stackoverflow.com/questions/4096210/why-does-stdstring-not-provide-a-conversion-to-const-char
 
-https://stackoverflow.com/questions/4096210/why-does-stdstring-not-provide-a-conversion-to-const-char
+### 5. Deciding member functions, friend functions and non-member (free) functions
+
+Must read: https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421729#4421729
 
 ### 5. Gtest is used as the testing framework
 
