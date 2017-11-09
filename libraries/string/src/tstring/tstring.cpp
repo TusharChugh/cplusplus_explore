@@ -53,7 +53,7 @@ const char * tlib::tstring::c_str() const {
     return _str;
 }
 
-void tlib::swap(tstring & str1, tstring & str2){
+void tlib::swap(tstring & str1, tstring & str2) noexcept {
     //enabling ADL with swap is not useful for our case as cstring and int don't have their own swap methods)
     std::swap(str1._str, str2._str);
     std::swap(str1._str_len, str2._str_len);
@@ -66,7 +66,25 @@ void tlib::swap(tstring & str1, tstring & str2){
 //Can't use code below because the self assignment would delete the reference of the object (str = str)
 //copy_str(str._str);
 //return *this;
-tlib::tstring & tlib::tstring::operator=(tstring & str) {
+tlib::tstring & tlib::tstring::operator=(tstring str) {
     swap(*this, str);
+    return *this;
+}
+
+tlib::tstring & tlib::tstring::operator+=(const char * rhs) {
+    if(rhs) {
+        size_t rhs_len = strnlen(rhs, tlib::tstring::MAX_LENGTH);
+        size_t combined_length = _str_len + rhs_len;
+        combined_length = combined_length < MAX_LENGTH ? combined_length : MAX_LENGTH;
+        tstring first(*this);
+        alloc_str(combined_length);
+        strncpy(_str, first._str, first._str_len);
+        strncpy(_str + first._str_len, rhs, rhs_len);
+    }
+    return *this;
+}
+
+tlib::tstring & tlib::tstring::operator+=(const tstring &rhs) {
+    operator+=(rhs._str);
     return *this;
 }

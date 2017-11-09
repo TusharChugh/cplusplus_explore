@@ -1,5 +1,5 @@
-#ifndef TLIB_STRING_STRING_H
-#define TLIB_STRING_STRING_H
+#ifndef TLIB_TSTRING_TSTRING_H
+#define TLIB_TSTRING_TSTRING_H
 
 #include <cstring>
 #include <cstddef>
@@ -67,7 +67,12 @@ namespace tlib {
          */
         const char * c_str() const;
 
-        friend void swap(tstring & str1, tstring & str2);
+        /**
+         * Function to swap two tstring objects
+         * @param str1 tstring1
+         * @param str2 tstring2
+         */
+        friend void swap(tstring & str1, tstring & str2) noexcept;
 
         /******************operators******************/
 
@@ -76,7 +81,13 @@ namespace tlib {
          * @param str
          * @return
          */
-        tstring & operator = (tstring & str);
+        tstring & operator = (tstring str);
+
+        tstring & operator += (const tstring & str);
+
+        tstring & operator += (const char * str);
+
+        tstring & operator [] (const int) const;
 
         //comparison operators
 
