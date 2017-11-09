@@ -10,9 +10,9 @@ TEST(CREATESTRING, SETANDGET) {
     ASSERT_STREQ(string_input.c_str(), input.c_str());
 }
 
-TEST(CREATESTRING, POINTER_OPERATOR_TEST) {
-
-    tlib::tstring input("Hello");
-    ASSERT_STREQ(string_input.c_str(), input);
-}
+//TEST(CREATESTRING, POINTER_OPERATOR_TEST) {
+//
+//    tlib::tstring input("Hello");
+//    ASSERT_STREQ(string_input.c_str(), input);
+//}
 
