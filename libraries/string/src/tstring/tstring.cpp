@@ -110,7 +110,7 @@ bool tlib::tstring::operator>(const tstring &rhs) {
 }
 
 bool tlib::tstring::operator<(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) >= 0) return true;
+    if(strncmp(_str, rhs._str, MAX_LENGTH) < 0) return true;
     return false;
 }
 

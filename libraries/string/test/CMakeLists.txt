@@ -11,7 +11,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 enable_testing()
 
-set(SOURCE_FILES unit_tests.cpp tstring/create_string.cpp tstring/copy_swap.cpp)
+set(SOURCE_FILES unit_tests.cpp tstring/create_string.cpp tstring/copy_swap.cpp tstring/comparion_operators.cpp)
 
 add_executable(unittest_string ${SOURCE_FILES})
 target_link_libraries(unittest_string ${GTEST_LIBRARIES} tstring pthread)
