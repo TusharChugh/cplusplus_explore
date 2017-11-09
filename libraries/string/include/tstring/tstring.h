@@ -77,17 +77,40 @@ namespace tlib {
         /******************operators******************/
 
         /**
-         *
-         * @param str
-         * @return
+         * Copy and assignment
+         * @param str tstring to be copied
+         * @return reference to the assigned tstring
          */
         tstring & operator = (tstring str);
 
+        /**
+         * Concatenates provided tstring
+         * @param str tstring to be concatenated
+         * @return concatenated tstring
+         */
         tstring & operator += (const tstring & str);
 
+        /**
+         * Concatenates provided cstring
+         * @param str cstring to be concatenated
+         * @return concanated tstring
+         */
         tstring & operator += (const char * str);
 
-        tstring & operator [] (const int) const;
+        /**
+         * returns the value at the index
+         * @return value at the index
+         */
+        const char operator [] (const int index) const;
+
+
+        /******************comparison operators******************/
+        bool operator == (const tstring & rhs);
+        bool operator >= (const tstring & rhs);
+        bool operator <= (const tstring & rhs);
+        bool operator >  (const tstring & rhs);
+        bool operator <  (const tstring & rhs);
+        bool operator != (const tstring & rhs);
 
         //comparison operators
 
@@ -103,4 +126,4 @@ namespace tlib {
     };
 }
 
-#endif //TLIB_STRING_STRING_H
+#endif //TLIB_TSTRING_TSTRING_H

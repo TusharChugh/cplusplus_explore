@@ -60,12 +60,6 @@ void tlib::swap(tstring & str1, tstring & str2) noexcept {
 }
 
 //Operators
-//Copy and swap idiom (https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom)
-//The rule of big three (copy constructor, copy assignment and destructor:
-// https://stackoverflow.com/questions/4172722/what-is-the-rule-of-three)
-//Can't use code below because the self assignment would delete the reference of the object (str = str)
-//copy_str(str._str);
-//return *this;
 tlib::tstring & tlib::tstring::operator=(tstring str) {
     swap(*this, str);
     return *this;
@@ -87,4 +81,9 @@ tlib::tstring & tlib::tstring::operator+=(const char * rhs) {
 tlib::tstring & tlib::tstring::operator+=(const tstring &rhs) {
     operator+=(rhs._str);
     return *this;
+}
+
+const char tlib::tstring::operator[](const int index) const {
+    if(index < 0 || index >= (int)_str_len) return 0;
+    return _str[index];
 }
