@@ -87,3 +87,34 @@ const char tlib::tstring::operator[](const int index) const {
     if(index < 0 || index >= (int)_str_len) return 0;
     return _str[index];
 }
+
+//Comparison operators
+bool tlib::tstring::operator==(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) == 0) return true;
+    return false;
+}
+
+bool tlib::tstring::operator>=(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) >= 0) return true;
+    return false;
+}
+
+bool tlib::tstring::operator<=(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) <= 0) return true;
+    return false;
+}
+
+bool tlib::tstring::operator>(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) > 0) return true;
+    return false;
+}
+
+bool tlib::tstring::operator<(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) >= 0) return true;
+    return false;
+}
+
+bool tlib::tstring::operator!=(const tstring &rhs) {
+    if(strncmp(_str, rhs._str, MAX_LENGTH) != 0) return true;
+    return false;
+}
