@@ -21,7 +21,14 @@ ADL (https://stackoverflow.com/questions/8111677/what-is-argument-dependent-look
 ### 3. Reset and alloc_str:
 Reset and alloc_str functions are used by a lot of other functions. Do not repeat yourself (DRY)
 
-### 4. 
+### 4. Do not add - operator const char * () const;  
+Adding this operator though is convenient for the printing tstring with cout and in some other cases.
+But implicit typecasting is evil. Consider:   
+tlib::tstring str = "Hello";
+str + "World"
+Now we are not sure that str would be type casted to const char * and or will stay as tstring and concatenated using the + operator of the tstring class. 
+
+https://stackoverflow.com/questions/4096210/why-does-stdstring-not-provide-a-conversion-to-const-char
 
 ### 5. Gtest is used as the testing framework
 

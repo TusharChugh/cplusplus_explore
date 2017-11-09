@@ -118,7 +118,3 @@ bool tlib::tstring::operator!=(const tstring &rhs) {
     if(strncmp(_str, rhs._str, MAX_LENGTH) != 0) return true;
     return false;
 }
-
-tlib::tstring::operator const char * () const {
-    return c_str();
-}
