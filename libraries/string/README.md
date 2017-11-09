@@ -16,8 +16,8 @@ c. For a strong exception guarantee we need to copy the string before deleting i
 d. This required extra memory and rather than allocating the memory inside the function we let the compiler do it by passing it as the value  
 
 Details:  
-Copy and swap idiom (https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom) 
-
+Copy and swap idiom (https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom)  
+ADL (https://stackoverflow.com/questions/8111677/what-is-argument-dependent-lookup-aka-adl-or-koenig-lookup)
 ### 3. Reset and alloc_str:
 Reset and alloc_str functions are used by a lot of other functions. Do not repeat yourself (DRY)
 
