@@ -21,9 +21,11 @@ ADL (https://stackoverflow.com/questions/8111677/what-is-argument-dependent-look
 ### 3. Reset and alloc_str:
 Reset and alloc_str functions are used by a lot of other functions. Do not repeat yourself (DRY)
 
-### 4. Gtest is used as the testing framework
+### 4. 
 
-### 5. Gcov provides the code coverage
+### 5. Gtest is used as the testing framework
+
+### 6. Gcov provides the code coverage
 
 Create issues to report any bugs or give the suggestions to improve the code
 

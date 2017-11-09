@@ -112,7 +112,7 @@ namespace tlib {
         bool operator <  (const tstring & rhs);
         bool operator != (const tstring & rhs);
 
-        //comparison operators
+        operator const char * () const;
 
         /******************find and replace******************/
 
