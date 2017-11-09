@@ -14,6 +14,8 @@ tlib::tstring::tstring(tstring && str) noexcept {
     reset();
     _str = str._str;
     _str_len = str._str_len;
+    str._str = nullptr;
+    str._str_len = 0;
     str.reset();
 }
 
@@ -55,8 +57,9 @@ const char * tlib::tstring::c_str() const {
 
 void tlib::swap(tstring & str1, tstring & str2) noexcept {
     //enabling ADL with swap is not useful for our case as cstring and int don't have their own swap methods)
-    std::swap(str1._str, str2._str);
-    std::swap(str1._str_len, str2._str_len);
+    using std::swap;
+    swap(str1._str, str2._str);
+    swap(str1._str_len, str2._str_len);
 }
 
 //Operators
@@ -83,38 +86,17 @@ tlib::tstring & tlib::tstring::operator+=(const tstring &rhs) {
     return *this;
 }
 
-const char tlib::tstring::operator[](const int index) const {
-    if(index < 0 || index >= (int)_str_len) return 0;
+char& tlib::tstring::operator[](size_t index) {
+    if(index < 0 || index >= (int)_str_len) return _str[_str_len];
     return _str[index];
 }
 
-//Comparison operators
-bool tlib::tstring::operator==(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) == 0) return true;
-    return false;
+const char& tlib::tstring::operator[](size_t index) const {
+    if(index < 0 || index >= (int)_str_len) return _str[_str_len];
+    return _str[index];
 }
 
-bool tlib::tstring::operator>=(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) >= 0) return true;
-    return false;
-}
-
-bool tlib::tstring::operator<=(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) <= 0) return true;
-    return false;
-}
-
-bool tlib::tstring::operator>(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) > 0) return true;
-    return false;
-}
-
-bool tlib::tstring::operator<(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) < 0) return true;
-    return false;
-}
-
-bool tlib::tstring::operator!=(const tstring &rhs) {
-    if(strncmp(_str, rhs._str, MAX_LENGTH) != 0) return true;
-    return false;
+std::ostream& operator<<(std::ostream& os, const tlib::tstring str) {
+    os<<str.c_str();
+    return os;
 }
