@@ -100,3 +100,13 @@ std::ostream& operator<<(std::ostream& os, const tlib::tstring str) {
     os<<str.c_str();
     return os;
 }
+
+//Utilities
+
+const char& tlib::tstring::front() const {
+    return _str[0];
+}
+
+const char& tlib::tstring::back() const {
+    return _str[_str_len - 1];
+}

@@ -107,6 +107,14 @@ namespace tlib {
          */
         const char& operator [] (size_t index) const;
 
+        /******************utilities******************/
+
+        inline size_t length() const { return _str_len;  }
+        inline size_t size() const { return _str_len; }
+        inline bool empty() const { return !(_str_len); };
+        const char& front() const;
+        const char& back() const;
+
         /******************find and replace******************/
 
         /******************split******************/
