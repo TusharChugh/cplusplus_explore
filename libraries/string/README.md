@@ -48,9 +48,20 @@ b. It takes in the lhs argument by value. The reason is same why we had to do th
 c. += is more efficient that =. Prefer to use it in most cases.   
 d. Array subscript operator [] is preferred to be used as the class member
 
-### 5. Gtest is used as the testing framework
+### 6. Gtest is used as the testing framework
 
-### 6. Gcov provides the code coverage
+### 7. What Next?  
+While reading about the how to implement iterator and how std::string is implemented - I landed on exploring c++ 11 book. After going through the exploration 64 'Traits and policies', I decided to park this implementation and restart policy based approach.
+The policy based approach will take the traits which implements comparison like methods and allocator would implement storage based rules. Here we can use vector, deque, or an array based storage. 
+Here are the signatures the new type:  
+  
+<section>
+template< 
+    class CharT, 
+    class Traits = std::char_traits<CharT>, 
+    class Allocator = std::allocator<CharT>
+> class basic_string
+</section>
 
 Create issues to report any bugs or give the suggestions to improve the code
 
