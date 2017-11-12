@@ -41,10 +41,10 @@ bool operator == (const tstring & rhs) const;
 ```
 This is acceptable (notice const at the end). But non-member function is more efficient and is the rule of the thumb.
 Details: https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421729#4421729  
-https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421719#4421719
-2. Output steam operator << also as the non member function. We can declare it as friend or non-member. As in this case we have c_str(), which returns const char * (the same as the private variable), it is better to go with this. 
-3. Assignment operator += is better suited as member function as they modify the lvalue. 
-4. Assignment operator + is better suited as non-member function. Can call += and lhs and rhs are to be treated equally.
+https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421719#4421719  
+2. Output steam operator << also as the non member function. We can declare it as friend or non-member. As in this case we have c_str(), which returns const char * (the same as the private variable), it is better to go with this.   
+3. Assignment operator += is better suited as member function as they modify the lvalue.   
+4. Assignment operator + is better suited as non-member function. Can call += and lhs and rhs are to be treated equally.  
 Notice the declaration of operator +   
 inline tstring operator+(tstring lhs, const tstring& rhs)  
 a. It returns the copy of the result, not the reference as they is no way around the copy.   
