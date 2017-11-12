@@ -4,12 +4,14 @@
 #include <cstring>
 #include <cstddef>
 #include <ostream>
+#include <iterator>
 
 
 const static char * __TLIB_STRING_VERSION = "0.0.1";
 
 namespace tlib {
     class tstring {
+
     public:
         static const int MAX_LENGTH = 65535;
         /*******************constructors*******************/
@@ -67,7 +69,7 @@ namespace tlib {
          * returns a null-terminated character sequence (c-string) type
          * @return c-string
          */
-        const char* c_str() const;
+        const char* c_str() const noexcept;
 
         /**
          * Function to swap two tstring objects
@@ -109,16 +111,35 @@ namespace tlib {
 
         /******************utilities******************/
 
+        /**
+         * returns the length of the string
+         * @return number of characters in the string
+         */
         inline size_t length() const { return _str_len;  }
+
+        /**
+         * returns the size (=length) of the string
+         * @return number of characters in the string
+         */
         inline size_t size() const { return _str_len; }
+
+        /**
+         * empty string or not
+         * @return true if string length is zero else false
+         */
         inline bool empty() const { return !(_str_len); };
+
+        /**
+         * returns the first character of the tstring
+         * @return the character at the 0 index
+         */
         const char& front() const;
+
+        /**
+         * returns the character at the back of the tstring
+         * @return last character of the tstring
+         */
         const char& back() const;
-
-        /******************find and replace******************/
-
-        /******************split******************/
-
 
     private:
         char * _str = nullptr;

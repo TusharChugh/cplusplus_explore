@@ -51,7 +51,7 @@ void tlib::tstring::reset() {
     _str_len = 0;
 }
 
-const char * tlib::tstring::c_str() const {
+const char * tlib::tstring::c_str() const noexcept {
     return _str;
 }
 
@@ -110,3 +110,4 @@ const char& tlib::tstring::front() const {
 const char& tlib::tstring::back() const {
     return _str[_str_len - 1];
 }
+
