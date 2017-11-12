@@ -24,8 +24,10 @@ Reset and alloc_str functions are used by a lot of other functions. Do not repea
 ### 4. Do not add - operator const char * () const;  
 Adding this operator though is convenient for the printing tstring with cout and in some other cases.
 But implicit typecasting is evil. Consider:   
+```c++
 tlib::tstring str = "Hello";
 str + "World"
+```
 Now we are not sure that str would be type casted to const char * and or will stay as tstring and concatenated using the + operator of the tstring class. 
 Instead of this typecast, we can overload with << operator.  
 Note: Explicit keyword from c++ 11 onwards can be used to get away with implicit typecast evil  
@@ -34,7 +36,9 @@ Details: https://stackoverflow.com/questions/4096210/why-does-stdstring-not-prov
 ### 5. Deciding member functions, friend functions and non-member (free) functions
 1. Comparison operators as non-member functions because both the objects are to be treated equally.   
 It can also be defined as a member function like:  
+```c++
 bool operator == (const tstring & rhs) const;  
+```
 This is acceptable (notice const at the end). But non-member function is more efficient and is the rule of the thumb.
 Details: https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421729#4421729  
 https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421719#4421719
