@@ -55,13 +55,13 @@ While reading about the how to implement iterator and how std::string is impleme
 The policy based approach will take the traits which implements comparison like methods and allocator would implement storage based rules. Here we can use vector, deque, or an array based storage. 
 Here are the signatures the new type:  
   
-<section>
+```c++
 template< 
     class CharT, 
     class Traits = std::char_traits<CharT>, 
     class Allocator = std::allocator<CharT>
 > class basic_string
-</section>
+```
 
 Create issues to report any bugs or give the suggestions to improve the code
 
